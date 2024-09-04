@@ -1,0 +1,76 @@
+/* Container for the entire posts section */
+.posts-container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+/* Title of the posts section */
+.posts-container h1 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+  border-bottom: 2px solid #007bff; /* Added border-bottom for emphasis */
+  padding-bottom: 10px; /* Added padding for spacing */
+}
+
+/* List styling for posts */
+.post-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Individual post item styling */
+.post-item {
+  padding: 20px; /* Increased padding for better spacing */
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px; /* More rounded corners */
+  background-color: #f9f9f9;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.post-item:hover {
+  background-color: #f1f1f1;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Slightly larger shadow for better effect */
+}
+
+/* Title styling within each post item */
+.post-title {
+  font-size: 1.8rem;
+  color: #007bff;
+  margin-bottom: 10px;
+  font-weight: bold;
+  line-height: 1.3; /* Added line-height for spacing */
+}
+
+/* Excerpt styling within each post item */
+.post-excerpt {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+/* Author styling within each post item */
+.post-author {
+  font-size: 0.9rem;
+  color: #777;
+  font-style: italic;
+}
+
+/* Fallback styling when no posts are found */
+.posts-container p {
+  text-align: center;
+  color: #777;
+  font-size: 1.2rem;
+  margin-top: 20px;
+}

@@ -1,76 +1,120 @@
-/* Container for the entire posts section */
+/* Container for the posts */
 .posts-container {
-  max-width: 900px;
-  margin: 20px auto;
+  max-width: 800px;
+  margin: 0 auto;
   padding: 20px;
-  background-color: #ffffff;
-  border: 1px solid #ddd;
+  background-color: #f5f5f5;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  font-family: Arial, sans-serif;
 }
 
-/* Title of the posts section */
-.posts-container h1 {
-  font-size: 2.5rem;
-  color: #333;
-  margin-bottom: 20px;
-  text-align: center;
-  border-bottom: 2px solid #007bff; /* Added border-bottom for emphasis */
-  padding-bottom: 10px; /* Added padding for spacing */
-}
-
-/* List styling for posts */
+/* List of posts */
 .post-list {
-  list-style: none;
+  list-style-type: none;
   padding: 0;
-  margin: 0;
 }
 
-/* Individual post item styling */
+/* Individual post item */
 .post-item {
-  padding: 20px; /* Increased padding for better spacing */
-  margin-bottom: 15px;
+  background-color: #fff;
   border: 1px solid #ddd;
-  border-radius: 10px; /* More rounded corners */
-  background-color: #f9f9f9;
-  cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  text-align: center; /* Centering the content */
 }
 
+/* Hover effect on post */
 .post-item:hover {
-  background-color: #f1f1f1;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Slightly larger shadow for better effect */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Title styling within each post item */
+/* Post header (title) */
+.post-header {
+  margin-bottom: 12px;
+}
+
+/* Title styling (centered) */
 .post-title {
   font-size: 1.8rem;
-  color: #007bff;
-  margin-bottom: 10px;
   font-weight: bold;
-  line-height: 1.3; /* Added line-height for spacing */
+  margin: 0;
+  color: #333;
+  text-align: center; /* Center the title */
 }
 
-/* Excerpt styling within each post item */
-.post-excerpt {
+/* Body (post content) */
+.post-body {
   font-size: 1rem;
+  margin: 16px 0;
   color: #555;
-  margin-bottom: 10px;
-  line-height: 1.6;
+  word-wrap: break-word;
+  line-height: 1.5;
 }
 
-/* Author styling within each post item */
-.post-author {
+/* See more link styling */
+.see-more {
+  color: #007bff;
+  cursor: pointer;
+  margin-left: 5px;
+  font-weight: 500;
+}
+
+.see-more:hover {
+  text-decoration: underline;
+}
+
+/* Footer (author and like button) */
+.post-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
   font-size: 0.9rem;
   color: #777;
-  font-style: italic;
 }
 
-/* Fallback styling when no posts are found */
-.posts-container p {
-  text-align: center;
-  color: #777;
+/* Author styling */
+.post-author {
+  font-size: 1rem;
+  color: #888;
+}
+
+/* Likes section */
+.post-likes {
+  display: flex;
+  align-items: center;
+  font-size: 1.1rem;
+}
+
+/* Like button with icon */
+.like-button {
+  background-color: transparent;
+  color: #007bff;
+  border: none;
+  cursor: pointer;
   font-size: 1.2rem;
-  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.like-button svg {
+  margin-right: 5px;
+}
+
+/* Like button hover effect */
+.like-button:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Like count */
+.like-count {
+  font-size: 1rem;
+  color: #333;
+  margin-left: 10px;
 }

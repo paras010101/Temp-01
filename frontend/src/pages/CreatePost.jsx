@@ -39,7 +39,6 @@ function CreatePost() {
 
   return (
     <>
-    
       <div className="create-post-container">
         <h2>Create New Post</h2>
         <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>

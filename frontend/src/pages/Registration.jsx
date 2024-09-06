@@ -20,11 +20,19 @@ function Registration() { // Rename the component to reflect its purpose
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post("http://localhost:3001/auth", data); // Use the correct registration endpoint
-      console.log("Registration response:", response.data); // Handle successful registration
+      const response = await axios.post("http://localhost:3001/auth", data).then((response)=>{
+        // console.log("Registration response:", response.data); // Handle successful registration
+        if(response.data.error){
+          alert("user name already exist please try with some other user name")
+        }
+        else{
+          navigate("/login"); // Example: Redirect to home page after successful registration
+        }
+      }) // Use the correct registration endpoint
+      
 
       // Implement logic to handle successful registration here (e.g., store token, redirect)
-      navigate("/login"); // Example: Redirect to home page after successful registration
+      
     } catch (error) {
       console.error("Error registering:", error);
       // Handle registration errors here (e.g., display error message)

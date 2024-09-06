@@ -6,20 +6,43 @@ const {sign, TokenExpiredError} = require('jsonwebtoken');
 const { validateToken } = require("../middlewares/AuthMiddleware");
 
 
-router.post("/",(req,res)=>{
-    const {username,password} = req.body
-    // Users.create({
-    //     username:username,
-    //     password:password,
-    // })
-    bycrypt.hash(password,10).then((hash)=>{
-        Users.create({
-            username:username,
-            password:hash,
-        })
-        res.json("user save sucessfull")
-    })
-})
+// router.post("/",(req,res)=>{
+//     const {username,password} = req.body
+//     bycrypt.hash(password,10).then((hash)=>{
+//         Users.create({
+//             username:username,
+//             password:hash,
+//         })
+//         res.json("user save sucessfull")
+//     })
+// })
+router.post("/", async (req, res) => {
+    const { username, password } = req.body;
+  
+    try {
+      // Check if username already exists
+      const existingUser = await Users.findOne({
+        where: { username: username },
+      });
+  
+      if (existingUser) {
+        return res.json({ error: "Username already exists" });  // Notify user
+      }
+  
+      // Hash password and create user
+      const hashedPassword = await bycrypt.hash(password, 10);
+      await Users.create({
+        username: username,
+        password: hashedPassword,
+      });
+  
+      res.json("User registered successfully");
+    } catch (error) {
+      console.error("Error registering user:", error);
+      res.status(500).json({ error: "An error occurred during registration" });
+    }
+  });
+  
 
 router.post("/login",async (req,res)=>{
     const {username,password} = req.body

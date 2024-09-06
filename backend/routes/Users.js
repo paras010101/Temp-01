@@ -16,6 +16,15 @@ const { validateToken } = require("../middlewares/AuthMiddleware");
 //         res.json("user save sucessfull")
 //     })
 // })
+
+router.get("/basicinfo/:id" , async (req,res)=>{
+    const id = req.params.id
+    const userInfo = await Users.findByPk(
+        id, {attributes : {exclude : ["password"] } }
+    ) 
+    res.json(userInfo);
+})
+
 router.post("/", async (req, res) => {
     const { username, password } = req.body;
   
@@ -82,7 +91,8 @@ router.post("/login",async (req,res)=>{
     //     }
     // }
     router.get("/auth",validateToken,(req,res)=>{
-        res.json(req.user);
+        const user = req.user
+        res.json(user);
     })
 })
 

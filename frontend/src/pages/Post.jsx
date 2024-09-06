@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./Post.css"; // Import specific CSS file
 import {Authcontext} from "../helpers/Authcontext"
+import { useNavigate } from "react-router-dom";
 
 function Post() {
   const { id } = useParams();
@@ -12,6 +13,7 @@ function Post() {
   const [loadingComments, setLoadingComments] = useState(false);
   const [error, setError] = useState(null); // State for error handling
   const {auth} = useContext(Authcontext)
+  const navigate = useNavigate();
 
   const deleteComment = (id)=>{
     axios.delete(`http://localhost:3001/comments/${id}`,{
@@ -19,7 +21,13 @@ function Post() {
     }
     )
   };
-
+  const deletePost = (id)=>{
+    // axios.delete(`http://localhost:3001/posts/${id}`,{
+    //   headers: { accessToken: localStorage.getItem("accessToken") } 
+    // }
+    // )
+    // navigate("/")
+  };
 
   const addComment = async () => {
     try {
@@ -28,19 +36,27 @@ function Post() {
         { commentsBody: newComment, PostId: id },
         { headers: { accessToken: localStorage.getItem("accessToken") } }
       );
-
+  
       if (response.data.error) {
+        // Assuming 'error' is a field in the response when there's an issue
         alert("You need to login to post a comment.");
       } else {
         setNewComment(""); // Clear comment input after successful submission
         fetchComments(); // Refresh comments after adding a new one
       }
     } catch (err) {
+      // Handle network or server errors
       console.error("Error adding comment:", err);
-      setError("Failed to add comment. Please try again."); // Set error message
+  
+      if (err.response && err.response.status === 401) {
+        // Specific error handling for unauthorized requests
+        alert("You need to login to post a comment.");
+      } else {
+        setError("Failed to add comment. Please try again."); // Set generic error message
+      }
     }
   };
-
+  
   const fetchComments = async () => {
     try {
       const response = await axios.get(`http://localhost:3001/comments/${id}`);
@@ -85,6 +101,9 @@ function Post() {
             <p>{postData.posttext}</p>
             <span className="post-username">Posted By: {postData.username}</span>
           </div>
+          {auth.username === postData.username && (
+                    <button onClick={()=>{deletePost(postData.id)}}>delete</button>
+                  )}
         </>
       )}
 

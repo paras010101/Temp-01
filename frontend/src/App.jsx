@@ -8,7 +8,7 @@ import Login from "./pages/Login";
 import { Authcontext } from "./helpers/Authcontext"; // Assuming Authcontext is defined
 import axios from "axios";
 import "./App.css"; // Import specific CSS file
-
+import PageNotFound from "./pages/PageNotFound";
 
 function App() {
   const [auth, setAuth] = useState(
@@ -95,6 +95,7 @@ function App() {
           <Route path="/posts/:id" element={<Post />} />
           <Route path="/registration" element={<Registration />} />
           <Route path="/login" element={<Login />} />
+          <Route path="*" element = {<PageNotFound/>} />
         </Routes>
       </BrowserRouter>
     </Authcontext.Provider>
